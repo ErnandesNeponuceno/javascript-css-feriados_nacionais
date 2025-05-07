@@ -1,23 +1,15 @@
 ## 🏋️‍♂️ Projeto HTML + CSS + Javascript.
 
-Página para busca de endereço por meio do CEP, utilizando a API viaCEP.  <br>
-
-Os temas abordados são:<br>
-- Consumo de APIs.
-- Requisição HTTP assíncrona.
-- Conversão de Dados.
-- Tratamento de Erros.<br>
+em construção
 
 ## Funcionalidades:
 
-- Pesquisa do CEP.
-- Botão para limpar o resultado e o valor digitado.
+em construção
+
 
 ## Estrutura do Projeto:
 
-- index.html: Arquivo HTML principal.
-- assets/css/styles.css: Arquivo CSS para estilização.
-- assets/js/script.js: Arquivo JavaScript contendo as funcionalidades descritas acima.
+em construção
 
 ## 💻 Tecnologias utilizadas nesse projeto:
 
@@ -29,15 +21,12 @@ Os temas abordados são:<br>
 
 ## 💻 Preview:
 
-- Veja como ficou o projeto acessando: [Link](https://javascript-css-busca-cep.vercel.app/)
+em construção
   
-![Imagem do Projeto](assets/img/tela.png)
 
 ## 📌 Referências:
-- **Site:** ✨ViaCEP:
-  [https://viacep.com.br/](https://viacep.com.br/)
 
-- **Site:** ✨Medium:
-  [Usando API de consulta de endereço](https://medium.com/@braulliovg/consumindo-api-de-consulta-de-endere%C3%A7o-via-javascript-c83b7ad9976e)
+em construção
+
 
 
