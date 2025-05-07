@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feriados Nacionais</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <header class="header__container">
+        <img src="/assets/img/logo.png" alt="">
+    </header>
+    <main class="main__container">
+        <div class="main__content">
+            <div class="main__ano">
+                <label for="">Escolha o Ano</label>
+                <input type="text" id="cep" name="cep" maxlength="8" autocomplete="off">
+                <button type="button" class="btn button__cep" onclick="consultaCep()">BUSCAR</button>
+            </div>
+           <div class="main__result hidden">
+               <p class="main__result__text" id="result">
+        
+               </p>
+               <button class="btn button__result" onclick="limparCep()">LIMPAR</button>
+           </div>
+        </div>
+    </main>
+<script src="/assets/js/script.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+</html>
