@@ -13,16 +13,15 @@
     </header>
     <main class="main__container">
         <div class="main__content">
-            <div class="main__ano">
+            <div class="main__year">
                 <label for="">Escolha o Ano</label>
-                <input type="text" id="cep" name="cep" maxlength="8" autocomplete="off">
-                <button type="button" class="btn button__cep" onclick="consultaCep()">BUSCAR</button>
+                <input type="text" id="year" name="year" maxlength="8" autocomplete="off">
+                <button type="button" class="btn button__year" onclick="consultaFeriado()">BUSCAR</button>
             </div>
            <div class="main__result hidden">
                <p class="main__result__text" id="result">
-        
                </p>
-               <button class="btn button__result" onclick="limparCep()">LIMPAR</button>
+               <button class="btn button__result" onclick="limparResultado()">LIMPAR</button>
            </div>
         </div>
     </main>

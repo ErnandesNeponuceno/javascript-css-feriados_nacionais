@@ -47,13 +47,14 @@ body {
     display: flex;
     flex-direction: column;
     padding: 2rem .625rem .625rem;
-    gap: 3rem;
-    margin-top: 2rem;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.main__ano {
+.main__year {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -65,17 +66,13 @@ body {
         border-radius: 10px;
         font-size: 1rem;
         border: 1px solid #f9f9f9;
-    }
-
-    ;
+    };
 
     label {
         font-size: 1.25rem;
         font-weight: 400;
         text-align: center
-    }
-
-    ;
+    };
 }
 
 .main__result {
@@ -124,7 +121,7 @@ body {
 }
 
 .button__result,
-.button__cep {
+.button__year {
     margin-bottom: 1rem;
 }
 
@@ -144,7 +141,6 @@ body {
 @media (width > 1200px) {
     .main__content {
         width: 50vw;
-        flex-direction: row;
         padding: 2rem;
     }
 
