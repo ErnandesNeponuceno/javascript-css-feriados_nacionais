@@ -1,60 +1,68 @@
-const inputCep = document.getElementById('result');
-const cepInput = document.getElementById('cep');
+const ano = document.getElementById('ano');
+const inputAno = document.getElementById('result');
 const resultDiv = document.querySelector('.main__result');
 
-function consultaCep() {
-    const cep = cepInput.value.replace(/\D/g, '');
-    const url = 'https://viacep.com.br/ws/' + cep + '/json/';
-    const request = new XMLHttpRequest();
+function consultaFeriado() {
+    const year = ano.value.trim();
 
-    if (!validateCep(cep)) {
-        Toastify({
-            text: "Por favor, insira um CEP válido.",
-            duration: 3000,
-            close: true,
-            gravity: "top", 
-            position: "center", 
-            stopOnFocus: true, 
-            style: {
-              background: "#ef4444",
-            },
-        }).showToast();
-        return;
+    if (year.length !== 4 || isNaN(year)) {
+        openAlert();  
+        return;  
     }
+
+    const url = 'https://brasilapi.com.br/api/feriados/v1/' + year;
+    const request = new XMLHttpRequest();
 
     request.open('GET', url);
     request.onerror = function (e) {
-        inputCep.innerHTML = 'API OFFLINE OU CEP INVALIDO';
+        inputAno.innerHTML = 'API OFFLINE';
         resultDiv.style.display = 'flex';
     };
-    
+
     request.onload = () => {
         try {
             const response = JSON.parse(request.responseText);
-            if (response.erro === 'true') {
-                inputCep.innerHTML = 'CEP NAO ENCONTRADO ou INVALIDO';
+            const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+            if (Array.isArray(response)) {
+                response.forEach(feriado => {
+                    const [ano, mes, dia] = feriado.date.split('-');
+                    const data = new Date(`${feriado.date}T00:00:00`);
+                    const diaSemana = diasSemana[data.getDay()];
+                    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+                    inputAno.innerHTML += `Data: ${dataFormatada} (${diaSemana})<br>Feriado: ${feriado.name}<br><br>`;
+                });
             } else {
-                inputCep.innerHTML = 
-                    'CEP: ' + response.cep + '<br>' +
-                    'Logradouro: ' + response.logradouro + '<br>' +
-                    'Bairro: ' + response.bairro + '<br>' +
-                    'Cidade/UF: ' + response.localidade + ' / ' + response.uf;
+                inputAno.innerHTML = 'RESULTADO NÃO ENCONTRADO ou INVÁLIDO';
             }
         } catch (e) {
-            inputCep.innerHTML = 'API OFFLINE OU CEP INVALIDO';
+            inputAno.innerHTML = 'API OFFLINE OU ANO INVÁLIDO';
         }
         resultDiv.style.display = 'flex';
     };
     request.send();
 }
 
-function validateCep(cep) {
-    const re = /^[0-9]{8}$/;
-    return re.test(cep);
+function openAlert() {
+    document.getElementById('alert').style.display = 'block';
 }
 
-function limparCep() {
-    inputCep.innerHTML = '';
-    cepInput.value = '';
-    resultDiv.style.display = 'none';  
+function closeAlert() {
+    document.getElementById('alert').style.display = 'none';
+}
+
+document.getElementById('closeAlert').addEventListener('click', closeAlert);
+document.getElementById('closeBtn').addEventListener('click', closeAlert);
+
+window.onclick = function(event) {
+    const modal = document.getElementById('alert');
+    if (event.target === modal) {
+        closeAlert();
+    }
+};
+
+function limparResultado() {
+    inputAno.innerHTML = '';
+    ano.value = '';
+    resultDiv.style.display = 'none';
 }
