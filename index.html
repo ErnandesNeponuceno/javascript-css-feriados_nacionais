@@ -6,8 +6,8 @@
     <title>Feriados Nacionais</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
 </head>
+
 <body>
     <header class="header__container">
         <img src="/assets/img/logo.png" alt="">
@@ -15,17 +15,20 @@
     <main class="main__container">
         <div class="main__content">
             <div class="main__year">
-<<<<<<< HEAD
-                <label for="">Escolha o Ano</label>
-                <input type="text" id="year" name="year" maxlength="8" autocomplete="off">
-                <button type="button" class="btn button__year" onclick="consultaFeriado()">BUSCAR</button>
-=======
-                <label for="year">Escolha o Ano</label>
-                <input id="ano" type="text" imputmode="numeric" pattern="\d{4}" maxlength="4" name="year" placeholder="Ex: 2025" min="2000" max="2100" autocomplete="off">
-                <button type="button" class="btn button__year" id="buscarBtn"onclick="consultaFeriado()">BUSCAR</button>
->>>>>>> poliana-poliana-01
+                <label for="year">Digite o Ano</label>
+                <input id="ano" type="text" inputmode="numeric" pattern="\d{4}" name="year" placeholder="Ex: 2025"
+                    maxlength="4" autocomplete="off"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
+                <button type="button" class="btn button__year" id="buscarBtn"
+                    onclick="consultaFeriado()">BUSCAR</button>
             </div>
-            
+
+            <div class="main__result">
+                <p class="main__result__text" id="result">
+                </p>
+                <button class="btn button_result" onclick="limparResultado()">LIMPAR</button>
+            </div>
+
             <div id="alert" class="modal">
                 <div class="modal-content">
                     <span class="close-btn" id="closeAlert">×</span>
@@ -34,19 +37,10 @@
                     <button id="closeBtn">OK</button>
                 </div>
             </div>
-
-           <div class="main__result">
-               <p class="main__result__text" id="result">
-               </p>
-<<<<<<< HEAD
-               <button class="btn button__result" onclick="limparResultado()">LIMPAR</button>
-=======
-               <button class="btn button_result" onclick="limparResultado()">LIMPAR</button>
->>>>>>> poliana-poliana-01
-           </div>
         </div>
     </main>
     <script src="assets/js/script.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
+
 </html>
