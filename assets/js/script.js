@@ -68,3 +68,5 @@ function limparResultado() {
     ano.value = '';
     resultDiv.style.display = 'none';
 }
+
+
