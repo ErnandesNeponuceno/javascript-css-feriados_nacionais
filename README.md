@@ -80,7 +80,7 @@ feriados-nacionais/
 
 ## 🖼️ Exemplo de Uso
 
-- Veja como ficou o projeto acessando: [Link](link)
+- Veja como ficou o projeto acessando: [Link](https://javascript-css-feriados-nacionais.vercel.app/)
 
 <img src="./assets/img/tela.png" alt="Exemplo da aplicação" width="600px">
 
