@@ -13,9 +13,6 @@ function consultaFeriado() {
         return;  
     }
 
-    limparResultado();
-    document.querySelector('.botoes_exportacao').style.display = 'none';
-
     const url = 'https://brasilapi.com.br/api/feriados/v1/' + year;
     const request = new XMLHttpRequest();
 
@@ -190,6 +187,8 @@ function limparResultado() {
     inputAno.innerHTML = '';
     ano.value = '';
     resultDiv.style.display = 'none';
+    document.querySelector('.botoes_exportacao').style.display = 'none';
+
 }
 
 
