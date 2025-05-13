@@ -1,7 +1,9 @@
-const { jsPDF } = window.jspdf; 
+import { gerarPDF, gerarCSV } from './exportUtils.js';
 const ano = document.getElementById('ano');
 const inputAno = document.getElementById('result');
 const resultDiv = document.querySelector('.main__result');
+document.getElementById('buscarBtn').addEventListener('click', consultaFeriado);
+document.getElementById('limparBtn').addEventListener('click', limparResultado);
 let feriadosData = [];
 
 function consultaFeriado() {
@@ -13,6 +15,7 @@ function consultaFeriado() {
         return;  
     }
 
+    inputAno.innerHTML = '';
     const url = 'https://brasilapi.com.br/api/feriados/v1/' + year;
     const request = new XMLHttpRequest();
 
@@ -52,55 +55,14 @@ function consultaFeriado() {
 }
 
 // Exportar PDF 
-document.getElementById('pdf').addEventListener('click', function() {
-    if (feriadosData.length === 0) {
-        Toastify({
-            text: "Nenhum dado para exportar",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-        }).showToast();
-        return;
-    }
-
+document.getElementById('pdf').addEventListener('click', function () {
     try {
-        const doc = new jsPDF();
-        
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(16);
-        doc.setTextColor(40);
-        doc.text(`Feriados Nacionais`, 105, 15, {align: "center"});
-        doc.setFontSize(12);
-        let y = 25;
-        
-        feriadosData.forEach((feriado, index) => {
-            const [ano, mes, dia] = feriado.date.split('-');
-            const data = new Date(`${feriado.date}T00:00:00`);
-            const diaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'][data.getDay()];
-            const dataFormatada = `${dia}/${mes}/${ano}`;
-            
-            doc.text(`${dataFormatada} (${diaSemana}) - ${feriado.name}`, 14, y);
-            y += 10;
-            
-            if (index < feriadosData.length - 1) {
-                doc.setDrawColor(200);
-                doc.line(10, y, 200, y);
-                y += 5;
-            }
-            
-            if (y > 280) {
-                doc.addPage();
-                y = 20;
-            }
-        });
-        
-        doc.save(`feriados_${ano.value}.pdf`);
+        gerarPDF(feriadosData, ano.value);
+        console.log('Aqui o valor do ano: ', ano.value)
     } catch (error) {
-        console.error("Erro ao gerar PDF:", error);
+        console.error(error.message);
         Toastify({
-            text: "Erro ao gerar PDF",
+            text: error.message,
             duration: 3000,
             close: true,
             gravity: "top",
@@ -112,49 +74,12 @@ document.getElementById('pdf').addEventListener('click', function() {
 
 // Exportar CSV 
 document.getElementById('csv').addEventListener('click', function() {
-    if (feriadosData.length === 0) {
-        Toastify({
-            text: "Nenhum dado para exportar",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-        }).showToast();
-        return;
-    }
-
     try {
-        const csvData = feriadosData.map(feriado => {
-            const [ano, mes, dia] = feriado.date.split('-');
-            const data = new Date(`${feriado.date}T00:00:00`);
-            const diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][data.getDay()];
-            return {
-                Data: `${dia}/${mes}/${ano}`,
-                'Dia da Semana': diaSemana,
-                Feriado: feriado.name
-            };
-        });
-
-        const csv = Papa.unparse(csvData, {
-            quotes: true, 
-            delimiter: ";",
-            header: true
-        });
-
-        const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `feriados_${ano.value}.csv`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        gerarCSV(feriadosData, ano.value);
     } catch (error) {
-        console.error("Erro ao gerar CSV:", error);
+        console.error(error.message);
         Toastify({
-            text: "Erro ao gerar CSV",
+            text: error.message,
             duration: 3000,
             close: true,
             gravity: "top",
@@ -188,7 +113,6 @@ function limparResultado() {
     ano.value = '';
     resultDiv.style.display = 'none';
     document.querySelector('.botoes_exportacao').style.display = 'none';
-
 }
 
 

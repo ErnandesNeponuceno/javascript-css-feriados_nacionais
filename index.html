@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feriados Nacionais</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    
 </head>
 
 <body>
@@ -20,26 +20,24 @@
                 <input id="ano" type="text" inputmode="numeric" pattern="\d{4}" name="year" placeholder="Ex: 2025"
                     maxlength="4" autocomplete="off"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)">
-                <button type="button" class="btn button__year" id="buscarBtn"
-                    onclick="consultaFeriado()">BUSCAR</button>
+                <button type="button" class="btn button__year" id="buscarBtn">BUSCAR</button>
             </div>
 
-        <div class="botoes_exportacao" style="display: none;" aria-live="polite">
-            <button id="pdf" class="btn" aria-label="Exportar lista de feriados para PDF">
-                <span class="btn-icon">📄</span>
-                <span class="btn-text">Baixar PDF</span>
-            </button>
-            <button id="csv" class="btn" aria-label="Exportar lista de feriados para CSV">
-                <span class="btn-icon">📊</span>
-                <span class="btn-text">Baixar CSV</span>
-            </button>
-        </div>
-
+            <div class="botoes_exportacao" style="display: none;" aria-live="polite">
+                <button id="pdf" aria-label="Exportar lista de feriados para PDF">
+                    <span class="btn-icon">📄</span>
+                    <span class="btn-text">Baixar PDF</span>
+                </button>
+                <button id="csv" aria-label="Exportar lista de feriados para CSV">
+                    <span class="btn-icon">📊</span>
+                    <span class="btn-text">Baixar CSV</span>
+                </button>
+            </div>
 
             <div class="main__result">
                 <p class="main__result__text" id="result">
                 </p>
-                <button class="btn button_result" onclick="limparResultado()">LIMPAR</button>
+                <button class="btn button_result" id="limparBtn">LIMPAR</button>
             </div>
 
             <div id="alert" class="modal">
@@ -52,10 +50,10 @@
             </div>
         </div>
     </main>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="assets/js/script.js"></script>
+    <script type="module" src="./assets/js/script.js"></script>
 </body>
 
 </html>
