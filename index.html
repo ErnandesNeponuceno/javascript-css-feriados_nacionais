@@ -6,6 +6,7 @@
     <title>Feriados Nacionais</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
 </head>
 
 <body>
@@ -23,6 +24,18 @@
                     onclick="consultaFeriado()">BUSCAR</button>
             </div>
 
+        <div class="botoes_exportacao" style="display: none;" aria-live="polite">
+            <button id="pdf" class="btn" aria-label="Exportar lista de feriados para PDF">
+                <span class="btn-icon">📄</span>
+                <span class="btn-text">Baixar PDF</span>
+            </button>
+            <button id="csv" class="btn" aria-label="Exportar lista de feriados para CSV">
+                <span class="btn-icon">📊</span>
+                <span class="btn-text">Baixar CSV</span>
+            </button>
+        </div>
+
+
             <div class="main__result">
                 <p class="main__result__text" id="result">
                 </p>
@@ -39,8 +52,10 @@
             </div>
         </div>
     </main>
-    <script src="assets/js/script.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
